@@ -9,12 +9,13 @@ extern "C"
 #include "check.hpp"
 #include "print.hpp"
 
-# define TEST_LIMIT 10
+# define TEST_LIMIT 12
 
 int iTest = 1;
 int testNumber;
 char * testName;
 bool showTest = false;
+static char *s_hidden = "hi low\0don't print me lol\0";
 int main(int ac, char ** av)
 {
 	signal(SIGSEGV, sigsegv);
@@ -33,7 +34,9 @@ int main(int ac, char ** av)
 	TEST(7, print(" %s %s ", " - ", ""));
 	TEST(8, print(" %s %s %s %s ", " - ", "", "4", ""));
 	TEST(9, print(" %s %s %s %s %s ", " - ", "", "4", "", "2 "));
-	TEST(10, print(" NULL %s NULL ", NULL));
+	TEST(10, print("%s%s%s", "1", "2", "3's a charm"));
+	TEST(11, print(" NULL %s NULL ", NULL));
+	TEST(12, print("%s", s_hidden));
 	cout << ENDL;
 	return (0);
 }

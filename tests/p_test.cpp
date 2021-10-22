@@ -8,12 +8,24 @@ extern "C"
 #include "sigsegv.hpp"
 #include "check.hpp"
 #include "print.hpp"
-#define TEST_LIMIT 9
+#define TEST_LIMIT 10
 
 int iTest = 1;
 int testNumber;
 char * testName;
 bool showTest = false;
+static char	a01;
+static unsigned char a02;
+static short a03;
+static unsigned short a04;
+static int a05;
+static unsigned int a06;
+static long a07;
+static unsigned long a08;
+static long long a09;
+static unsigned long long a10;
+static char *a11;
+static void *a12;
 int main(int ac, char ** av)
 {
 	signal(SIGSEGV, sigsegv);
@@ -32,6 +44,7 @@ int main(int ac, char ** av)
 	TEST(7, print(" %p %p ", INT_MIN, INT_MAX));
 	TEST(8, print(" %p %p ", ULONG_MAX, -ULONG_MAX));
 	TEST(9, print(" %p %p ", 0, 0));
+	TEST(10,print("%p%p%p%p%p%p%p%p%p%p%p%p",&a01,&a02,&a03,&a04,&a05,&a06,&a07,&a08,&a09,&a10,&a11,&a12));
 	cout << ENDL;
 	return (0);
 }
